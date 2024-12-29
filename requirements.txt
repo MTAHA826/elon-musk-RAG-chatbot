@@ -1,0 +1,12 @@
+langchain-community
+langchain_huggingface
+langchain
+langsmith
+transformers 
+qdrant_client
+langchain-qdrant
+streamlit
+bs4
+langchain-google-genai
+pillow
+python-dotenv
