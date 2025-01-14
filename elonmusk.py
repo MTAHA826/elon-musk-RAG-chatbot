@@ -9,7 +9,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_google_genai import GoogleGenerativeAI
 from operator import itemgetter
 from dotenv import load_dotenv
-import bs4
+import bs4 
 from bs4 import SoupStrainer
 from langchain_openai import OpenAIEmbeddings
 # Load environment variables
