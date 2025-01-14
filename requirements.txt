@@ -10,3 +10,6 @@ bs4
 langchain-google-genai
 pillow
 python-dotenv
+langchain-openai
+pinecone-client
+langchain_pinecone
