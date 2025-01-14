@@ -12,7 +12,6 @@ from dotenv import load_dotenv
 import bs4 
 from bs4 import SoupStrainer
 from langchain_openai import OpenAIEmbeddings
-PINECONE_API_KEY = os.getenv("PINECONE_API_KEY")
 load_dotenv()
 # Document loader
 @st.cache_data
