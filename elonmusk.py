@@ -47,7 +47,7 @@ llm = GoogleGenerativeAI(model="gemini-1.5-flash-002", google_api_key=google_api
 
 # Setup retriever and chain
 num_chunks = 5
-retriever = doc_store.as_retriever(search_type="mmr", search_kwargs={"k": num_chunks})
+retriever = doc_store.as_retriever(search_type="similarity search", search_kwargs={"k": num_chunks})
 
 def format_docs(docs):
     return "\n\n".join(doc.page_content for doc in docs)
