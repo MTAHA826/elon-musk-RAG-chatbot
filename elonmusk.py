@@ -29,27 +29,27 @@ chunks=load_document_loader()
 # Initialize embedding and Qdrant
 embed = HuggingFaceEmbeddings(model_name='BAAI/bge-small-en-v1.5')
 
-embeddings = OpenAIEmbeddings(
-    model="text-embedding-3-small",
-    openai_api_key=openai_api_key,
-    # With the `text-embedding-3` class
-    # of models, you can specify the size
-    # of the embeddings you want returned.
-    # dimensions=1024
-)
-    # of the embeddings you want returned.
-    # dimensions=1024
-# Qdrant setup\
-# api_key = os.getenv('qdrant_api_key')
-# url = 'https://1328bf7c-9693-4c14-a04c-f342030f3b52.us-east4-0.gcp.cloud.qdrant.io:6333'
-# doc_store = QdrantVectorStore.from_existing_collection(
-#     embedding=embed,
-#     url=url,
-#     api_key=api_key,
-#     prefer_grpc=True,
-#     collection_name="Elon Muske"
+# embeddings = OpenAIEmbeddings(
+#     model="text-embedding-3-small",
+#     openai_api_key=openai_api_key,
+#     # With the `text-embedding-3` class
+#     # of models, you can specify the size
+#     # of the embeddings you want returned.
+#     # dimensions=1024
 # )
-pineconedb=PineconeVectorStore.from_existing_index(index_name='project1', embedding=embeddings)
+    # of the embeddings you want returned.
+    # dimensions=1024
+Qdrant setup
+api_key = os.getenv('qdrant_api_key')
+url = 'https://1328bf7c-9693-4c14-a04c-f342030f3b52.us-east4-0.gcp.cloud.qdrant.io:6333'
+doc_store = QdrantVectorStore.from_existing_collection(
+    embedding=embed,
+    url=url,
+    api_key=api_key,
+    prefer_grpc=True,
+    collection_name="Elon Muske"
+)
+# pineconedb=PineconeVectorStore.from_existing_index(index_name='project1', embedding=embeddings)
 
 # Initialize Google LLM
 google_api = os.getenv('google_api_key')
