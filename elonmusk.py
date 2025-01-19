@@ -15,8 +15,9 @@ import bs4
 from bs4 import SoupStrainer
 from langchain_openai import OpenAIEmbeddings
 load_dotenv()
-pi
 # Document loader
+OPENAI_API_KEY=os.getenv('OPENAI_API_KEY')
+PINECONE_API_KEY=os.getenv('PINECONE_API_KEY ')
 @st.cache_data
 def load_document_loader():
     loader = WebBaseLoader(
@@ -34,7 +35,7 @@ embed = HuggingFaceEmbeddings(model_name='BAAI/bge-small-en-v1.5')
 
 embeddings = OpenAIEmbeddings(
     model="text-embedding-3-small",
-    openai_api_key=openai_api_key,
+    openai_api_key=OPENAI_API_KEY,
     # With the `text-embedding-3` class
     # of models, you can specify the size
     # of the embeddings you want returned.
