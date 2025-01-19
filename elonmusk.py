@@ -15,7 +15,7 @@ import bs4
 from bs4 import SoupStrainer
 from langchain_openai import OpenAIEmbeddings
 load_dotenv()
-# Document loader
+#Document loader
 OPENAI_API_KEY=os.getenv('OPENAI_API_KEY')
 PINECONE_API_KEY=os.getenv('PINECONE_API_KEY ')
 @st.cache_data
