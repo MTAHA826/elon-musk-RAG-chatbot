@@ -16,6 +16,7 @@ import bs4
 from bs4 import SoupStrainer
 from langchain_openai import OpenAIEmbeddings
 load_dotenv()
+openai.api_key ="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"
 #Document loader
 OPENAI_API_KEY=os.getenv('OPENAI_API_KEY')
 PINECONE_API_KEY=os.getenv('PINECONE_API_KEY ')
@@ -36,7 +37,7 @@ embed = HuggingFaceEmbeddings(model_name='BAAI/bge-small-en-v1.5')
 
 embeddings = OpenAIEmbeddings(
     model="text-embedding-3-small",
-    openai_api_key=OPENAI_API_KEY,
+    openai_api_key=openai.api_key,
     # With the `text-embedding-3` class
     # of models, you can specify the size
     # of the embeddings you want returned.
@@ -57,7 +58,7 @@ embeddings = OpenAIEmbeddings(
 pineconedb=PineconeVectorStore.from_existing_index(index_name='project1', embedding=embeddings)
 LLM = ChatOpenAI(
                 model_name='gpt-4o-mini',
-                openai_api_key=OPENAI_API_KEY,
+                openai_api_key=openai.api_key,
                 temperature=0)
 # Initialize Google LLM
 # google_api = os.getenv('google_api_key')
