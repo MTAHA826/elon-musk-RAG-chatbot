@@ -1,4 +1,6 @@
 import os
+from langchain.chat_models import ChatOpenAI
+import openai
 import streamlit as st
 from langchain_community.document_loaders import WebBaseLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -13,6 +15,7 @@ import bs4
 from bs4 import SoupStrainer
 from langchain_openai import OpenAIEmbeddings
 load_dotenv()
+pi
 # Document loader
 @st.cache_data
 def load_document_loader():
@@ -29,31 +32,34 @@ chunks=load_document_loader()
 # Initialize embedding and Qdrant
 embed = HuggingFaceEmbeddings(model_name='BAAI/bge-small-en-v1.5')
 
-# embeddings = OpenAIEmbeddings(
-#     model="text-embedding-3-small",
-#     openai_api_key=openai_api_key,
-#     # With the `text-embedding-3` class
-#     # of models, you can specify the size
-#     # of the embeddings you want returned.
-#     # dimensions=1024
-# )
+embeddings = OpenAIEmbeddings(
+    model="text-embedding-3-small",
+    openai_api_key=openai_api_key,
+    # With the `text-embedding-3` class
+    # of models, you can specify the size
+    # of the embeddings you want returned.
+    # dimensions=1024
+)
     # of the embeddings you want returned.
     # dimensions=1024
 # Qdrant setup
-api_key = os.getenv('qdrant_api_key')
-url = 'https://1328bf7c-9693-4c14-a04c-f342030f3b52.us-east4-0.gcp.cloud.qdrant.io:6333'
-doc_store = QdrantVectorStore.from_existing_collection(
-    embedding=embed,
-    url=url,
-    api_key=api_key,
-    prefer_grpc=True,
-    collection_name="Elon Muske"
-)
-# pineconedb=PineconeVectorStore.from_existing_index(index_name='project1', embedding=embeddings)
-
+# api_key = os.getenv('qdrant_api_key')
+# url = 'https://1328bf7c-9693-4c14-a04c-f342030f3b52.us-east4-0.gcp.cloud.qdrant.io:6333'
+# doc_store = QdrantVectorStore.from_existing_collection(
+#     embedding=embed,
+#     url=url,
+#     api_key=api_key,
+#     prefer_grpc=True,
+#     collection_name="Elon Muske"
+# )
+pineconedb=PineconeVectorStore.from_existing_index(index_name='project1', embedding=embeddings)
+LLM = ChatOpenAI(
+                model_name='gpt-4o-mini',
+                openai_api_key=OPENAI_API_KEY,
+                temperature=0)
 # Initialize Google LLM
-google_api = os.getenv('google_api_key')
-llm = GoogleGenerativeAI(model="gemini-1.5-flash-002", google_api_key=google_api)
+# google_api = os.getenv('google_api_key')
+# llm = GoogleGenerativeAI(model="gemini-1.5-flash-002", google_api_key=google_api)
 
 # Setup retriever and chain
 num_chunks = 5
