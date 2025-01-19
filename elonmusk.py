@@ -14,11 +14,11 @@ from operator import itemgetter
 from dotenv import load_dotenv
 import bs4 
 from bs4 import SoupStrainer
-from langchain_openai import OpenAIEmbeddings
+#from langchain_openai import OpenAIEmbeddings
 load_dotenv()
 #openai.api_key = os.getenv("OPENAI_API_KEY")#Document loader
-# print("OPENAI_API_KEY:", os.getenv("OPENAI_API_KEY"))
-# PINECONE_API_KEY=os.getenv('PINECONE_API_KEY ')
+#print("OPENAI_API_KEY:", os.getenv("OPENAI_API_KEY"))
+#PINECONE_API_KEY=os.getenv('PINECONE_API_KEY ')
 @st.cache_data
 def load_document_loader():
     loader = WebBaseLoader(
@@ -61,7 +61,7 @@ doc_store = QdrantVectorStore.from_existing_collection(
 #                 temperature=0)
 # Initialize Google LLM
 google_api = os.getenv('google_api_key')
-LLM = GoogleGenerativeAI(model="gemini-1.5-flash-002", google_api_key=google_api)
+llm = GoogleGenerativeAI(model="gemini-1.5-flash-002", google_api_key=google_api)
 
 # Setup retriever and chain
 num_chunks = 5
@@ -82,7 +82,7 @@ _prompt = ChatPromptTemplate.from_template(prompt_str)
 # Chain setup
 query_fetcher = itemgetter("question")
 setup = {"question": query_fetcher, "context": query_fetcher | retriever| format_docs }
-_chain = setup | _prompt | LLM | StrOutputParser()
+_chain = setup | _prompt | llm | StrOutputParser()
 
 # Streamlit UI
 # Streamlit UI
