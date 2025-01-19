@@ -7,10 +7,8 @@ langchain-qdrant
 streamlit
 bs4
 librosa
-openai
 streamlit-mic-recorder
 langchain-google-genai
 pillow
 python-dotenv
-langchain_openai
 langchain-pinecone
