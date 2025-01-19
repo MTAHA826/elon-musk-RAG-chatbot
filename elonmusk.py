@@ -65,7 +65,7 @@ LLM = ChatOpenAI(
 
 # Setup retriever and chain
 num_chunks = 5
-retriever = doc_store.as_retriever(search_type="mmr", search_kwargs={"k": num_chunks})
+retriever = pineconedb.as_retriever(search_type="mmr", search_kwargs={"k": num_chunks})
 #retriever = pineconedb.as_retriever(search_type="mmr", search_kwargs={"k": num_chunks})
 
 def format_docs(docs):
