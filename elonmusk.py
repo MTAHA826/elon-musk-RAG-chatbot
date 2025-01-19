@@ -62,11 +62,6 @@ doc_store = QdrantVectorStore.from_existing_collection(
 # Initialize Google LLM
 google_api = os.getenv('google_api_key')
 llm = GoogleGenerativeAI(model="gemini-1.5-flash-002", google_api_key=google_api)
-import logging
-
-logging.basicConfig(level=logging.DEBUG)
-logging.debug(f"doc_store: {doc_store}")
-logging.debug(f"num_chu: {num_chu}")
 
 # Setup retriever and chain
 num_chunks = 5
