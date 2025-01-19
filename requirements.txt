@@ -7,9 +7,11 @@ qdrant_client
 langchain-qdrant
 streamlit
 bs4
+librosa
+openai
+streamlit-mic-recorder
 langchain-google-genai
 pillow
 python-dotenv
-langchain-openai
-pinecone-client
-langchain_pinecone
+langchain_openai
+langchain-pinecone
