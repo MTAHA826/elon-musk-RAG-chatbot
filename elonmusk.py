@@ -82,7 +82,7 @@ _prompt = ChatPromptTemplate.from_template(prompt_str)
 # Chain setup
 query_fetcher = itemgetter("question")
 setup = {"question": query_fetcher, "context": query_fetcher | retriever| format_docs }
-_chain = setup | _prompt | llm | StrOutputParser()
+_chain = setup | _prompt | LLM | StrOutputParser()
 
 # Streamlit UI
 # Streamlit UI
