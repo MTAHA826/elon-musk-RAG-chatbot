@@ -17,7 +17,7 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 openai_api_key = st.secrets["OPENAI_API_KEY"]
-PINECONE_API_KEY=os.environ['PINECONE_API_KEY']\\
+PINECONE_API_KEY=os.environ['PINECONE_API_KEY']
 
 # Initialize embedding and Qdrant
 
