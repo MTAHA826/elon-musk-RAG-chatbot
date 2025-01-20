@@ -97,7 +97,7 @@ def set_send_input():
     clear_input_field()
     
 with st.container():
-    query = st.text_input("Please enter a query", key="query", on_change=send_input)
+    query = st.text_input("Please enter a query", key="query", on_change=set_send_input)
     send_button = st.button("Send", key="send_btn")  # Single send button
 #     audio=mic_recorder(start_prompt="**",stop_prompt="##",key="recorder")
 # if audio:
