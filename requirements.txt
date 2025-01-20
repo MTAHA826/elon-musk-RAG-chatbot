@@ -8,6 +8,8 @@ streamlit
 bs4
 librosa
 streamlit-mic-recorder
+openai
+langchain-openai
 langchain-google-genai
 pillow
 python-dotenv
