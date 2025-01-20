@@ -98,7 +98,7 @@ query = st.text_input("Please enter a query", key="query", on_change=set_send_in
 #     audio=mic_recorder(start_prompt="**",stop_prompt="##",key="recorder")
 # if audio:
 #     st.audio(audio["bytes"])
-voice_recording,send_button_column = st.columns(3)
+voice_recording,send_button_column = st.columns(2)
 with voice_recording:
     voice_recording=speech_to_text(language="en",use_container_width=True,just_once=True,key="STT")
 with send_button_column:
