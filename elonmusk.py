@@ -96,8 +96,8 @@ def set_send_input():
     st.session_state.send_input = True
     clear_input_field()
     
-query, send_button_column = st.columns(2)
-with
+input_query, send_button_column = st.columns(2)
+with input_query
     query = st.text_input("Please enter a query", key="query", on_change=set_send_input)
 with send_button_column:
     send_button = st.button("Send", key="send_button", on_click=clear_input_field)
@@ -107,8 +107,6 @@ with send_button_column:
     with st.container():
         voice_recording=speech_to_text(language="en",use_container_width=True,just_once=True,key="STT")
         text="hello"
-    
-
     
 if voice_recording:
         query=voice_recording
