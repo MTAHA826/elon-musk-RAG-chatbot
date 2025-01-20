@@ -96,13 +96,9 @@ with st.container():
 #     st.audio(audio["bytes"])
     text=speech_to_text(language="en",use_container_width=True,just_once=True,key="STT")
 if text:
-    with st.spinner("Processing... Please wait!"):  # Spinner starts here
-        response=_chain.invoke('question':text)
-    st.write(response.content)
-    st.session_state.messages.append(("user", query))
-    st.session_state.messages.append(("ai", response))
+        query=text
 # Chat logic
-if send_button or send_input and query:
+if send_button or send_input and query or text:
     with st.spinner("Processing... Please wait!"):  # Spinner starts here
         response = _chain.invoke({'question': query})  # Generate response
     # Update session state with user query and AI response
