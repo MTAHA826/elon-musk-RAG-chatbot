@@ -114,9 +114,9 @@ if voice_recording:
 #     voice="alloy",
 #     input="Today is a wonderful day to build something people love!",
 # )
-response.stream_to_file(speech_file_path)
-if response:
-    st.response(response['bytes'])
+# response.stream_to_file(speech_file_path)
+# if response:
+#     st.response(response['bytes'])
 # Input field for queries
 def set_send_input():
     st.session_state.send_input = True
