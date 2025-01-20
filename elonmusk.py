@@ -97,7 +97,7 @@ with st.container():
 #     st.audio(audio["bytes"])
     voice_recording_column, send_button_column = st.columns(2)
     with voice_recording_column:
-        voice_recording=speech_to_text(language="en",use_container_width=True,just_once=True,key="STT"),stop_prompt="Stop recording", just_once=True)
+        voice_recording=speech_to_text(language="en",use_container_width=True,just_once=True,key="STT")
     with send_button_column:
         send_button = st.button("Send", key="send_button", on_click=clear_input_field)
 
