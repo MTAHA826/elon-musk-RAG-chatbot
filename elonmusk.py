@@ -88,7 +88,9 @@ chat_container = st.container()
 # Initialize session state for chat history
 if "messages" not in st.session_state:
     st.session_state.messages = []
-
+    
+def set_send_input():
+    st.session_state.send_input = True
 
     
 query = st.text_input("Please enter a query", key="query", on_change=set_send_input)
