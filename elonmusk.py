@@ -44,7 +44,7 @@ embeddings = OpenAIEmbeddings(
 #     collection_name="Elon Muske"
 # )
 pineconedb=PineconeVectorStore.from_existing_index(index_name='project1', embedding=embeddings)
-LLM = ChatOpenAI(
+llm = ChatOpenAI(
                 model_name='gpt-4o-mini',
                 openai_api_key=openai.api_key,
                 temperature=0)
