@@ -51,7 +51,7 @@ llm = ChatOpenAI(
 # Initialize Google LLM
 
 
-response.stream_to_file(speech_file_path)
+
 google_api = st.secrets['google_api_key']
 # llm = GoogleGenerativeAI(model="gemini-1.5-flash-002", google_api_key=google_api)
 
@@ -96,7 +96,7 @@ response = client.audio.speech.create(
     voice="alloy",
     input="Today is a wonderful day to build something people love!",
 )
-
+response.stream_to_file(speech_file_path)
 
 # Input field for queries
 def set_send_input():
