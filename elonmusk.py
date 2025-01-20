@@ -89,34 +89,34 @@ chat_container = st.container()
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-client = OpenAI()
-speech_file_path = Path(__file__).parent / "speech.mp3"
-response = client.audio.speech.create(
-    model="tts-1",
-    voice="alloy",
-    input="Today is a wonderful day to build something people love!",
-)
-response.stream_to_file(speech_file_path)
-if response:
-    st.response(response['bytes'])
-# Input field for queries
-def set_send_input():
-    st.session_state.send_input = True
+
     
 query = st.text_input("Please enter a query", key="query", on_change=set_send_input)
 
 #     audio=mic_recorder(start_prompt="**",stop_prompt="##",key="recorder")
 # if audio:
 #     st.audio(audio["bytes"])
-voice_recording, send_button_column = st.columns(2)
+voice_recording, voice_chat,send_button_column = st.columns(3)
 with voice_recording:
     voice_recording=speech_to_text(language="en",use_container_width=True,just_once=True,key="STT")
 with send_button_column:
     send_button = st.button("Send", key="send_button")
-    
+     voice_recording=text_to_speech(language="en",use_container_width=True,just_once=True,key="STT")
 if voice_recording:
         query=voice_recording
-    
+# client = OpenAI(openai_api_key=openai_api_key)
+# speech_file_path = "input_text.mp3"
+# response = client.audio.speech.create(
+#     model="tts-1",
+#     voice="alloy",
+#     input="Today is a wonderful day to build something people love!",
+# )
+response.stream_to_file(speech_file_path)
+if response:
+    st.response(response['bytes'])
+# Input field for queries
+def set_send_input():
+    st.session_state.send_input = True
 # Chat logic
 if send_button or set_send_input and query or voice_recording:
     with st.spinner("Processing... Please wait!"):  # Spinner starts here
