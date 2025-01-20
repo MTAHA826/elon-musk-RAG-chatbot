@@ -11,10 +11,10 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_google_genai import GoogleGenerativeAI
 from operator import itemgetter
-from bs4 import SoupStrainer\
+from bs4 import SoupStrainer
 from langchain_openai import OpenAIEmbeddings
 import os
-import d
+from dotenv import load_dotenv
 load_dotenv()
 openai_api_key = st.secrets["OPENAI_API_KEY"]
 PINECONE_API_KEY=os.environ['PINECONE_API_KEY']\\
