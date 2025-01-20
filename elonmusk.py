@@ -1,4 +1,3 @@
-import os
 from langchain.chat_models import ChatOpenAI
 import openai
 import langchain_pinecone
@@ -12,20 +11,17 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from langchain_google_genai import GoogleGenerativeAI
 from operator import itemgetter
-from dotenv import load_dotenv
-import bs4 
 from bs4 import SoupStrainer
 from langchain_openai import OpenAIEmbeddings
-load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")#Document loader
-print("OPENAI_API_KEY:", os.getenv("OPENAI_API_KEY"))
-PINECONE_API_KEY=os.getenv('PINECONE_API_KEY ')
+
+openai_api_key = st.secrets["OPENAI_API_KEY"]
+PINECONE_API_KEY=st.secrets['PINECONE_API_KEY ']
 
 # Initialize embedding and Qdrant
 
 embeddings = OpenAIEmbeddings(
     model="text-embedding-3-small",
-    openai_api_key=openai.api_key,
+    openai_api_key=openai_api_key,
     # With the `text-embedding-3` class
     # of models, you can specify the size
     # of the embeddings you want returned.
@@ -46,10 +42,10 @@ embeddings = OpenAIEmbeddings(
 pineconedb=PineconeVectorStore.from_existing_index(index_name='project1', embedding=embeddings)
 llm = ChatOpenAI(
                 model_name='gpt-4o-mini',
-                openai_api_key=openai.api_key,
+                openai_api_key=openai_api_key,
                 temperature=0)
 # Initialize Google LLM
-google_api = os.getenv('google_api_key')
+google_api = st.secrets['google_api_key']
 # llm = GoogleGenerativeAI(model="gemini-1.5-flash-002", google_api_key=google_api)
 
 # Setup retriever and chain
