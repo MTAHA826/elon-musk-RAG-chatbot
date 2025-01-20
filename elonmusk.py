@@ -104,7 +104,7 @@ with voice_recording:
 with send_button_column:
     send_button = st.button("Send", key="send_button")
 with voice_chat:
-     voice_recording=text_to_speech(language="en",use_container_width=True,just_once=True,key="STT")
+     voice_recording=text_to_speech(language="en",use_container_width=True,just_once=True,key="TTS")
 if voice_recording:
         query=voice_recording
 # client = OpenAI(openai_api_key=openai_api_key)
