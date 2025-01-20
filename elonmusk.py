@@ -1,5 +1,6 @@
 from langchain.chat_models import ChatOpenAI
 import openai
+from streamlit_mic_recorder import mic_recorder,speech_to_text
 import langchain_pinecone
 import streamlit as st
 from langchain_community.document_loaders import WebBaseLoader
@@ -90,7 +91,9 @@ def send_input():
 with st.container():
     query = st.text_input("Please enter a query", key="query", on_change=send_input)
     send_button = st.button("Send", key="send_btn")  # Single send button
-
+    audio=mic_recorder(start_prompt="**",stop_prompt="##",key="recorder")
+ if audio:
+     st.audio(audio["bytes"])
 # Chat logic
 if send_button or send_input and query:
     with st.spinner("Processing... Please wait!"):  # Spinner starts here
