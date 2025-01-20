@@ -92,17 +92,17 @@ if "messages" not in st.session_state:
 def set_send_input():
     st.session_state.send_input = True
     
-input_query, send_button_column = st.columns(2)
 with input_query:
     query = st.text_input("Please enter a query", key="query", on_change=set_send_input)
-with send_button_column:
-    send_button = st.button("Send", key="send_button",)
+
 #     audio=mic_recorder(start_prompt="**",stop_prompt="##",key="recorder")
 # if audio:
 #     st.audio(audio["bytes"])
-
-voice_recording=speech_to_text(language="en",use_container_width=True,just_once=True,key="STT")
-
+voice_recording, send_button_column = st.columns(2)
+with voice_recording:
+    voice_recording=speech_to_text(language="en",use_container_width=True,just_once=True,key="STT")
+with send_button_column:
+    send_button = st.button("Send", key="send_button")
     
 if voice_recording:
         query=voice_recording
