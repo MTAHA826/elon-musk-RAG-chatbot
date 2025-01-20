@@ -101,6 +101,7 @@ with voice_recording:
     voice_recording=speech_to_text(language="en",use_container_width=True,just_once=True,key="STT")
 with send_button_column:
     send_button = st.button("Send", key="send_button")
+with voice_chat:
      voice_recording=text_to_speech(language="en",use_container_width=True,just_once=True,key="STT")
 if voice_recording:
         query=voice_recording
