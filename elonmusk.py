@@ -88,17 +88,24 @@ if "messages" not in st.session_state:
 def send_input():
     st.session_state.send_input=True
 # Input field for queries
+
 with st.container():
     query = st.text_input("Please enter a query", key="query", on_change=send_input)
     send_button = st.button("Send", key="send_btn")  # Single send button
 #     audio=mic_recorder(start_prompt="**",stop_prompt="##",key="recorder")
 # if audio:
 #     st.audio(audio["bytes"])
-    text=speech_to_text(language="en",use_container_width=True,just_once=True,key="STT")
-if text:
-        query=text
+    voice_recording_column, send_button_column = st.columns(2)
+      with voice_recording_column:
+        voice_recording=speech_to_text(language="en",use_container_width=True,just_once=True,key="STT"),stop_prompt="Stop recording", just_once=True)
+    with send_button_column:
+        send_button = st.button("Send", key="send_button", on_click=clear_input_field)
+
+    
+if voice_recording:
+        query=voice_recording
 # Chat logic
-if send_button or send_input and query or text:
+if send_button or send_input and query or voice_recording:
     with st.spinner("Processing... Please wait!"):  # Spinner starts here
         response = _chain.invoke({'question': query})  # Generate response
     # Update session state with user query and AI response
