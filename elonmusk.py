@@ -20,7 +20,6 @@ load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")#Document loader
 print("OPENAI_API_KEY:", os.getenv("OPENAI_API_KEY"))
 PINECONE_API_KEY=os.getenv('PINECONE_API_KEY ')
-@st.cache_data
 
 # Initialize embedding and Qdrant
 
