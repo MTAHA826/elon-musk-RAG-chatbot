@@ -91,9 +91,16 @@ def send_input():
 with st.container():
     query = st.text_input("Please enter a query", key="query", on_change=send_input)
     send_button = st.button("Send", key="send_btn")  # Single send button
-    audio=mic_recorder(start_prompt="**",stop_prompt="##",key="recorder")
-if audio:
-    st.audio(audio["bytes"])
+#     audio=mic_recorder(start_prompt="**",stop_prompt="##",key="recorder")
+# if audio:
+#     st.audio(audio["bytes"])
+    text=speech_to_text(language="en",use_container_width=True,just_once=True,key="STT")
+if text:
+    with st.spinner("Processing... Please wait!"):  # Spinner starts here
+        response=_chain.invoke('question':text)
+    st.write(response.content)
+    st.session_state.messages.append(("user", query))
+    st.session_state.messages.append(("ai", response))
 # Chat logic
 if send_button or send_input and query:
     with st.spinner("Processing... Please wait!"):  # Spinner starts here
