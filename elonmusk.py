@@ -96,16 +96,18 @@ def set_send_input():
     st.session_state.send_input = True
     clear_input_field()
     
-with st.container():
+query, send_button_column = st.columns(2)
+with
     query = st.text_input("Please enter a query", key="query", on_change=set_send_input)
+with send_button_column:
+    send_button = st.button("Send", key="send_button", on_click=clear_input_field)
 #     audio=mic_recorder(start_prompt="**",stop_prompt="##",key="recorder")
 # if audio:
 #     st.audio(audio["bytes"])
-    voice_recording_column, send_button_column = st.columns(2)
-    with voice_recording_column:
+    with st.container():
         voice_recording=speech_to_text(language="en",use_container_width=True,just_once=True,key="STT")
-    with send_button_column:
-        send_button = st.button("Send", key="send_button", on_click=clear_input_field)
+        text="hello"
+    
 
     
 if voice_recording:
