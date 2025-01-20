@@ -1,5 +1,4 @@
 from langchain.chat_models import ChatOpenAI
-import openai
 from streamlit_mic_recorder import mic_recorder,speech_to_text
 import langchain_pinecone
 import streamlit as st
@@ -16,6 +15,8 @@ from bs4 import SoupStrainer
 from langchain_openai import OpenAIEmbeddings
 import os
 from dotenv import load_dotenv
+from pathlib import Path
+from openai import OpenAI
 load_dotenv()
 openai_api_key = st.secrets["OPENAI_API_KEY"]
 PINECONE_API_KEY=os.environ['PINECONE_API_KEY']
@@ -48,6 +49,9 @@ llm = ChatOpenAI(
                 openai_api_key=openai_api_key,
                 temperature=0)
 # Initialize Google LLM
+
+
+response.stream_to_file(speech_file_path)
 google_api = st.secrets['google_api_key']
 # llm = GoogleGenerativeAI(model="gemini-1.5-flash-002", google_api_key=google_api)
 
@@ -85,7 +89,13 @@ chat_container = st.container()
 if "messages" not in st.session_state:
     st.session_state.messages = []
 
-
+client = OpenAI()
+speech_file_path = Path(__file__).parent / "speech.mp3"
+response = client.audio.speech.create(
+    model="tts-1",
+    voice="alloy",
+    input="Today is a wonderful day to build something people love!",
+)
 
 
 # Input field for queries
@@ -105,6 +115,7 @@ with send_button_column:
     
 if voice_recording:
         query=voice_recording
+    
 # Chat logic
 if send_button or set_send_input and query or voice_recording:
     with st.spinner("Processing... Please wait!"):  # Spinner starts here
