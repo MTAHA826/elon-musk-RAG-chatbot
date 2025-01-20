@@ -53,7 +53,7 @@ google_api = st.secrets['google_api_key']
 # Setup retriever and chain
 
 num_chunks = 2
-retriever = pineconedb.as_retriever(search_type="similarity search", search_kwargs={"k": 2})
+retriever = pineconedb.as_retriever(search_type="similarity", search_kwargs={"k": 2})
 # retriever =doc_store.as_retriever(search_type="mmr", search_kwargs={"k": num_chunks})
 
 def format_docs(docs):
