@@ -88,8 +88,6 @@ if "messages" not in st.session_state:
 
 
 def clear_input_field():
-    if st.session_state.user_question == "":
-        st.session_state.user_question = st.session_state.query
         st.session_state.query = ""
 # Input field for queries
 def set_send_input():
