@@ -23,7 +23,6 @@ PINECONE_API_KEY=os.getenv('PINECONE_API_KEY ')
 @st.cache_data
 
 # Initialize embedding and Qdrant
-embed = HuggingFaceEmbeddings(model_name='BAAI/bge-small-en-v1.5')
 
 embeddings = OpenAIEmbeddings(
     model="text-embedding-3-small",
