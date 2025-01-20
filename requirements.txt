@@ -9,6 +9,7 @@ bs4
 librosa
 streamlit-mic-recorder
 openai
+langsmith
 langchain-openai
 langchain-google-genai
 pillow
