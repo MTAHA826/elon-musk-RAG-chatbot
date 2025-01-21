@@ -45,7 +45,7 @@ embeddings = OpenAIEmbeddings(
 # )
 pineconedb=PineconeVectorStore.from_existing_index(index_name='project1', embedding=embeddings)
 llm = ChatOpenAI(
-                model_name='gpt-4o-mini',
+                model_name='gpt-3.5-turbo',
                 openai_api_key=openai_api_key,
                 temperature=0)
 # Initialize Google LLM
